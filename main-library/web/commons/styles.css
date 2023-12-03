@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    text-decoration: none;
+    transition: 0.5s linear;
+}
+
+html {
+    background: rgb(242, 242, 242);
+}
+
+i {
+    font-size: 18px;
+    padding:0;
+}
+
+h1, h2, h3 {
+    padding: 5px;
+    text-align: center;
+}
+
+form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+form button {
+    width: 100%;
+}
+
+label {
+    width: 150px;
+    font-size: 18px;
+}
+
+input {
+    width: 150px;
+    font-size: 18px;
+    border: 2px solid black;
+}
+
+input[type="file"] {
+    border: none;
+}
+
+input[type="number"] {
+    width: 100px;
+}
+
+input[readonly] {
+    border: none;
+}
+
+textarea {
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    background: white;
+    margin: auto;
+}
+
+th {
+    background: rgb(0, 153, 153);
+    color: white;
+}
+
+td, th {
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+tr:hover {
+    background: rgb(242, 242, 242);
+}
+
+a, button {
+    text-align: center;
+    color: white;
+    cursor: pointer
+}
+
+a:hover, button:hover {
+    opacity: 0.2;
+}
+
+.group {
+    display: flex;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    z-index: 10;
+    background: rgb(51, 51, 51);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header a {
+    width: 150px;
+}
+
+.menu {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    background: white;
+}
+
+.menu a {
+    color: rgb(51, 51, 51);
+    width: 140px;
+    border: 2px solid transparent;
+}
+
+.menu .menu-active {
+    border-bottom: 2px solid rgb(51, 51, 51);
+}
+
+.container {
+    margin-top: 60px;
+}
+
+/*ảnh bìa*/
+.content-imgs {
+    /*width: 90%;*/
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: auto;
+    background: white;
+}
+
+.content-item {
+    flex: 1 0 20%;
+    max-width: calc(20% - 40px);
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(166, 166, 166);
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+}
+
+.content-item:hover {
+    transform: translate(-10px, -10px);
+    box-shadow: 10px 10px 5px rgb(166, 166, 166);
+}
+
+.content-item-image {
+    border-radius: 5px;
+    width: 100%;
+    height: 250px;
+}
+
+.content-item-text {
+    text-align: center;
+    font-weight: bold;
+    padding:5px;
+    color:rgb(179, 179, 179);
+}
+
+.submit {
+    background: rgb(102, 255, 204);
+}
+
+.search {
+    background: rgb(0, 230, 230);
+}
+
+.update {
+    color: rgb(255, 102, 0);
+}
+
+.delete {
+    color: rgb(255, 0, 102);
+}
+
+.search-frame {
+    display: flex;
+    width: 250px;
+}
+
+.search-frame input {
+    width: 200px;
+}
+
+.search-frame input, .search-frame button {
+    font-size: 18px;
+    height: 50px;
+    border: 2px solid rgb(0, 230, 230);
+    padding: 10px;
+}
+
+.small {
+    width: 50px;
+}
+
+.search-header {
+    display: flex;
+    align-items: center;
+}
+
+.search-header form {
+    margin: 0;
+}
+
+.search-header a {
+    height: 50px;
+    padding: 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.alert {
+    display: none;
+    color: white;
+    background: rgb(255, 0, 102);
+    width:30%;
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+}
