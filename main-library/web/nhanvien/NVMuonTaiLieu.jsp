@@ -179,7 +179,7 @@
                 // set list id taiLieu và list id taiLieuMuon vào form
                 document.getElementById("taiLieuIds").value = localStorage.getItem("taiLieuIds");
                 let datTruocIds = JSON.parse(localStorage.getItem("datTruocIds"));
-                if(datTruocIds === null) {
+                if (datTruocIds === null) {
                     datTruocIds = [];
                 }
                 document.getElementById("datTruocIds").value = JSON.stringify(datTruocIds);
@@ -235,10 +235,23 @@
                 if (table !== null) {
                     let rows = table.querySelectorAll('tr');
                     let datTruocIds = [];
-                    let taiLieuIds = [];
+                    let taiLieuIds = JSON.parse(localStorage.getItem("taiLieuIds"));
+                    if (taiLieuIds === null) {
+                        taiLieuIds = [];
+                    }
                     for (let i = 1; i < rows.length; ++i) {
+                        let ok = true;
                         datTruocIds.push(rows[i].querySelector('input[type="hidden"]').value);
-                        taiLieuIds.push(rows[i].cells[0].textContent);
+                        let taiLieuId = rows[i].cells[0].textContent;
+                        for (let j = 0; j < taiLieuIds.length; ++j) {
+                            if (taiLieuIds[j] === taiLieuId) {
+                                ok = false;
+                                break;
+                            }
+                        }
+                        if (ok) {
+                            taiLieuIds.push(rows[i].cells[0].textContent);
+                        }
                     }
                     localStorage.setItem("datTruocIds", JSON.stringify(datTruocIds));
                     localStorage.setItem("taiLieuIds", JSON.stringify(taiLieuIds));

@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/HK7/Toiec/main-library/web/commons/styles.css</file>
+            <file>file:/D:/HK7/Toiec/main-library/web/nhanvien/NVTraTaiLieu.jsp</file>
+            <file>file:/D:/HK7/Toiec/main-library/web/nhanvien/NVMuonTaiLieu.jsp</file>
+            <file>file:/D:/HK7/Toiec/main-library/src/java/dao/MuonTaiLieuDAO.java</file>
+            <file>file:/D:/HK7/Toiec/main-library/src/java/controller/nhanvien/NVMuonTaiLieuController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -100,11 +100,15 @@ public class BDDatTruocController extends HttpServlet {
 
             // thêm id tài liệu vào list id tài liệu đã đặt trước trong session
             List<Integer> datTruocIds = (List<Integer>) request.getSession().getAttribute("datTruocIds");
+            List<Integer> list = new ArrayList<>();
             if (datTruocIds == null) {
-                datTruocIds = new ArrayList<>();
+                list = new ArrayList<>();
+            } else {
+                list = new ArrayList<>(datTruocIds);
             }
-            datTruocIds.add(Integer.valueOf(taiLieuId));
-            request.getSession().setAttribute("datTruocIds", datTruocIds);
+
+            list.add(Integer.valueOf(taiLieuId));
+            request.getSession().setAttribute("datTruocIds", list);
 
         }
 

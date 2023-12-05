@@ -74,6 +74,8 @@
                             <input type="text" name="ngayPhaiTra" readonly value="${phieuMuon.ngayPhaiTra}">
                         </div>
                         <h2>Danh Sách Tài Liệu:</h2>
+                    </div>
+                    <div>
                         <c:choose>
                             <c:when test="${not empty phieuMuon.listTaiLieuMuons}">
                                 <div class="card-table" style="width:100%;">

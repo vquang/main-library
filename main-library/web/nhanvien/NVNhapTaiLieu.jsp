@@ -44,7 +44,7 @@
                 <div class="content" style="display: flex;">
                     <div style="width: 60%">
                         <c:if test="${not empty listNCCs}">
-                            <h3 style="text-align: start">Danh Sách Bạn Đọc</h3>
+                            <h3 style="text-align: start">Danh Sách Nhà Cung Cấp</h3>
                             <table style="margin: 0;">
                                 <tr>
                                     <th class="small">Mã</th>
