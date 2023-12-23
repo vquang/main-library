@@ -18,8 +18,12 @@
         <div class="header">
         </div>
         <div class="container">
-            <div class="content">
-                <form style="background: white; width: 400px;"
+            <div class="login">
+                <div class="login-left" style="background-image: linear-gradient(45deg, rgb(0, 153, 153), rgb(102, 255, 255));">
+                    <h1>Chào Mừng Tới</h1>
+                    <h1>Thư Viện</h1>
+                </div>
+                <form class="login-right login-nv"
                       action="/main-library/commons/TaiKhoanController/nhanvien-login" method="post">
                     <h3>Form Đăng Nhập Nhân Viên</h3>
                     <div class="group">
@@ -30,9 +34,21 @@
                         <label for="password">Password:</label>
                         <input id="password" type="password"  name="password" required/>
                     </div>
-                    <button type="submit" class="submit">submit</button>
+                    <button type="submit" class="submit">Login</button>
                 </form>
             </div>
+            <div class="error">
+                <h3>Thông Tin Không Chính Xác!</h3>
+            </div>
         </div>
+
+        <script>
+            init();
+            function init() {
+                if (${param.error == 'true'}) {
+                    document.querySelector('.error').style.display = 'block';
+                }
+            }
+        </script>
     </body>
 </html>

@@ -26,7 +26,7 @@
             <a href="/main-library/nhanvien/NVTraTaiLieu.jsp?first=true" class="menu-active">Trả Tài Liệu</a>
         </div>
         <div class="container">
-            <div class="content">
+            <div>
                 <div class="search-header">
                     <form action="/main-library/nhanvien/NVBanDocController/tra-search" method="post" onsubmit="return beforeSearch()">
                         <div class="search-frame" style="padding:0">
@@ -35,8 +35,8 @@
                         </div>
                     </form>
                 </div>
-                <div class="content" style="display: flex;">
-                    <div style="width: 60%">
+                <div style="display: flex;">
+                    <div style="width: 58%;margin-right:2%;">
                         <c:if test="${not empty listBanDocs}">
                             <h3 style="text-align: start">Danh Sách Bạn Đọc</h3>
                             <table style="margin: 0;">
@@ -68,7 +68,6 @@
                                     <th class="small">Mã</th>
                                     <th>Tên Tài Liệu</th>
                                     <th>Tác Giả</th>
-                                    <th>Số Lượng</th>
                                     <th>Ngày Mượn</th>
                                     <th>Ngày Phải Trả</th>
                                 </tr>
@@ -77,7 +76,6 @@
                                         <td class="small">${muon.taiLieu.id}</td>
                                         <td>${muon.taiLieu.ten}</td>
                                         <td>${muon.taiLieu.tacGia}</td>
-                                        <td>${muon.taiLieu.soLuong}</td>
                                         <td>${muon.ngayMuon}</td>
                                         <td>${muon.ngayPhaiTra}</td>
                                     </tr>
@@ -86,7 +84,7 @@
                         </c:if>
                     </div>
                     <div style="width: 40%;">
-                        <form onsubmit="return validateForm(this)" style="background: white; align-items: center;" action="/main-library/nhanvien/NVTraTaiLieuController" method="post">
+                        <form class="pre-bill" onsubmit="return validateForm(this)" action="/main-library/nhanvien/NVTraTaiLieuController" method="post">
                             <input type="hidden" name="nhanVienId" value="${thanhVien.id}" />
                             <input id="taiLieuIds" type="hidden" name="taiLieuIds" />
                             <input id="muonIds" type="hidden" name="muonIds" />
@@ -136,14 +134,14 @@
                 let soNgayMuon = 0;
                 let taiLieus = JSON.parse(localStorage.getItem("taiLieus"));
                 if (taiLieus !== null) {
-                    let html = `<tr><th class="small">Mã </th><th>Tên Tài Liệu </th><th>Ngày Mượn</th><th>Ngày Phải Trả</th><th class="small">Xóa </th></tr>`;
+                    let html = `<tr><th>Mã </th><th>Tên Tài Liệu </th><th>Ngày Mượn</th><th>Ngày Phải Trả</th><th>Xóa </th></tr>`;
                     for (let i = 0; i < taiLieus.length; ++i) {
                         soNgayMuon += calculateDate(taiLieus[i].ngayPhaiTra, date);
-                        html += '<tr><td class="small">' + taiLieus[i].taiLieuId + '</td><td>' + taiLieus[i].ten + '</td>'
-                                + '<input type=hidden value=' + taiLieus[i].rowIndex + '/>'
+                        html += '<tr><td>' + taiLieus[i].taiLieuId + '</td><td>' + taiLieus[i].ten + '</td>'
+                                + '<input type=hidden value=' + taiLieus[i].rowIndex + '>'
                                 + '<td>' + taiLieus[i].ngayMuon + '</td>'
                                 + '<td>' + taiLieus[i].ngayPhaiTra + '</td>'
-                                + '<td class="small"><button style="width:50px;background:transparent;" onclick="deleteTaiLieu(this)"><i class="fa-solid fa-trash delete"></i></button></td></tr>'
+                                + '<td><button style="width:50px;background:transparent;justify-content: start;" onclick="deleteTaiLieu(this)"><i class="fa-solid fa-trash delete"></i></button></td></tr>';
                     }
                     document.getElementById('mt').innerHTML = html;
                 }
@@ -189,8 +187,8 @@
                     id: element.id,
                     taiLieuId: element.cells[0].textContent,
                     ten: element.cells[1].textContent,
-                    ngayMuon: element.cells[4].textContent,
-                    ngayPhaiTra: element.cells[5].textContent,
+                    ngayMuon: element.cells[3].textContent,
+                    ngayPhaiTra: element.cells[4].textContent,
                     rowIndex: element.rowIndex
                 };
                 let muonIds = JSON.parse(localStorage.getItem("muonIds"));
@@ -229,10 +227,10 @@
 
             function deleteTaiLieu(element) {
                 let id = element.closest('tr').cells[0].textContent;
-                let rowIndex = element.querySelector('input[type="hidden"]').value;
                 let taiLieus = JSON.parse(localStorage.getItem("taiLieus"));
                 let taiLieuIds = JSON.parse(localStorage.getItem("taiLieuIds"));
-                let rowIndexs = JSON.parse(localStorage.getItem("rowIndexs"));
+                let rowIndexs = [];
+                let muonIds = [];
 
                 for (let i = 0; i < taiLieus.length; ++i) {
                     if (taiLieus[i].taiLieuId === id) {
@@ -244,15 +242,15 @@
                         taiLieuIds.splice(i, 1);
                     }
                 }
-                for (let i = 0; i < rowIndexs.length; ++i) {
-                    if (rowIndexs[i] === rowIndex) {
-                        rowIndexs.splice(i, 1);
-                    }
+                for (let i = 0; i < taiLieus.length; ++i) {
+                    rowIndexs.push(taiLieus[i].rowIndex);
+                    muonIds.push(taiLieus[i].id);
                 }
 
                 localStorage.setItem("taiLieus", JSON.stringify(taiLieus));
                 localStorage.setItem("taiLieuIds", JSON.stringify(taiLieuIds));
                 localStorage.setItem("rowIndexs", JSON.stringify(rowIndexs));
+                localStorage.setItem("muonIds", JSON.stringify(muonIds));
                 init();
             }
 

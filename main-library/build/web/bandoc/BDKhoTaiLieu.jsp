@@ -33,9 +33,9 @@
                         </div>
                     </form>
                 </div>
-                <h1>Kho Tài Liệu</h1>
+                <h2 class="title">Kho Tài Liệu</h2>
                 <c:if test="${not empty listTaiLieus}">
-                    <div class="content-imgs">
+                    <div class="content">
                         <c:forEach var="taiLieu" items="${listTaiLieus}">
                             <a class="content-item" href="/main-library/bandoc/BDTaiLieuController/select?id=${taiLieu.id}">
                                 <img class="content-item-image" src="/main-library/commons/${taiLieu.anhBia}" />

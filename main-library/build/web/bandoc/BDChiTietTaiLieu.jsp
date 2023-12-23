@@ -27,39 +27,40 @@
             <div class="alert">
                 <h3>Đặt Trước Thành Công</h3>
             </div>
-            <div class="content">
-                <h1>THÔNG TIN CHI TIẾT TÀI LIỆU</h1>
-                <div class="content" style="display: flex;justify-content: center;">
+            <div>
+                <h2 class="title">THÔNG TIN CHI TIẾT TÀI LIỆU</h2>
+                <div style="display:flex;">
                     <c:if test="${not empty taiLieu}">
-                        <div class="left" style="width: 250px;background: white;">
+                        <div class="left">
                             <img class="content-item-image" src="/main-library/commons/${taiLieu.anhBia}" />
                         </div>
-                        <div class="right" style="background: white;">
-                            <form action="/main-library/bandoc/BDDatTruocController/order" method="post" onsubmit="return beforeOrder(this)">
-                                <h3>Thông Tin Tài Liệu</h3>
-                                <input type="hidden" name="banDocId" value="${thanhVien.id}" />
-                                <input type="hidden" name="taiLieuId" value="${taiLieu.id}" />
-                                <input id="ngayDat" type="hidden" name="ngayDat" />
-                                <input id="ngayHetHan" type="hidden" name="ngayHetHan" />
-                                <div class="group">
-                                    <label for="ten">Tên Tài Liệu:</label>
-                                    <input id="ten" type="text" name="ten" value="${taiLieu.ten}" readonly />
+                        <div class="right">
+                            <form class="form-up" action="/main-library/bandoc/BDDatTruocController/order" method="post" onsubmit="return beforeOrder(this)">
+                                <div>
+                                    <input type="hidden" name="banDocId" value="${thanhVien.id}" />
+                                    <input type="hidden" name="taiLieuId" value="${taiLieu.id}" />
+                                    <input id="ngayDat" type="hidden" name="ngayDat" />
+                                    <input id="ngayHetHan" type="hidden" name="ngayHetHan" />
+                                    <div class="group">
+                                        <label for="ten">Tên Tài Liệu:</label>
+                                        <input id="ten" type="text" name="ten" value="${taiLieu.ten}" readonly />
+                                    </div>
+                                    <div class="group">
+                                        <label for="tacGia">Tác Giả:</label>
+                                        <input id="tacGia" type="text" name="tacGia" value="${taiLieu.tacGia}" readonly />
+                                    </div>
+                                    <div class="group">
+                                        <label for="soLuong">Số Lượng:</label>
+                                        <input style="font-weight: bold; color: red;" id="soLuong" type="text" name="soLuong" value="${taiLieu.soLuong}" readonly />
+                                    </div>
+                                    <div class="group">
+                                        <label for="moTa">Mô Tả:</label>
+                                        <textarea id="moTa" name="moTa" readonly>${taiLieu.moTa}</textarea>
+                                    </div>
+                                    <input type="hidden" name="anhBia" value="${taiLieu.anhBia}" />
                                 </div>
-                                <div class="group">
-                                    <label for="tacGia">Tác Giả:</label>
-                                    <input id="tacGia" type="text" name="tacGia" value="${taiLieu.tacGia}" readonly />
-                                </div>
-                                <div class="group">
-                                    <label for="soLuong">Số Lượng:</label>
-                                    <input style="font-weight: bold; color: red;" id="soLuong" type="text" name="soLuong" value="${taiLieu.soLuong}" readonly />
-                                </div>
-                                <div class="group">
-                                    <label for="moTa">Mô Tả:</label>
-                                    <textarea id="moTa" name="moTa" readonly>${taiLieu.moTa}</textarea>
-                                </div>
-                                <input type="hidden" name="anhBia" value="${taiLieu.anhBia}" />
-                                <button onclick="submit" class="submit">Đặt Trước</button>
 
+                                <button type="submit" class="submit">Đặt Trước</button>
                             </form>
                         </div>
                     </c:if>

@@ -23,24 +23,26 @@
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=0">Bạn Đọc</a>
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=1">Nhân Viên</a>
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=2">Admin</a>
+            <a href="/main-library/admin/ADNhaCungCapController/list">Nhà Cung Cấp</a>
             <a href="/main-library/admin/ADThongKe.jsp">Thống Kê</a>
         </div>
         <div class="container">
-            <div class="content" style="margin:10px;">
-                <form style="margin: auto;width:400px;background: white;"
-                      action="/main-library/admin/ADThanhVienController/insert" method="post" onsubmit="return validateForm(this)">
-                    <c:choose>
-                        <c:when test="${param.vaiTro == 0}">
-                            <c:set var="vaiTro" value="Bạn Đọc"/>
-                        </c:when>
-                        <c:when test="${param.vaiTro == 1}">
-                            <c:set var="vaiTro" value="Nhân Viên"/>
-                        </c:when>
-                        <c:when test="${param.vaiTro == 2}">
-                            <c:set var="vaiTro" value="Admin"/>
-                        </c:when>
-                    </c:choose>
-                    <h3>Form Tạo Mới ${vaiTro}</h3>
+            <form class="form-mem"action="/main-library/admin/ADThanhVienController/insert" method="post" onsubmit="return validateForm(this)">
+                <c:choose>
+                    <c:when test="${param.vaiTro == 0}">
+                        <c:set var="vaiTro" value="Bạn Đọc"/>
+                    </c:when>
+                    <c:when test="${param.vaiTro == 1}">
+                        <c:set var="vaiTro" value="Nhân Viên"/>
+                    </c:when>
+                    <c:when test="${param.vaiTro == 2}">
+                        <c:set var="vaiTro" value="Admin"/>
+                    </c:when>
+                </c:choose>
+                <div class="mem-header">
+                    <h3>Form Thông Tin Thành Viên</h3>
+                </div>
+                <div style="padding:0 50px 50px 50px;">
                     <input type="hidden" name="vaiTro" value="${param.vaiTro}" />
                     <div class="group">
                         <label for="username">Username:</label>
@@ -67,8 +69,8 @@
                         <input id="email" type="text"  name="email" required />
                     </div>
                     <button type="submit" class="submit">submit</button>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
 
         <script>

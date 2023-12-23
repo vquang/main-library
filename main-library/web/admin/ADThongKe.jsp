@@ -23,6 +23,7 @@
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=0">Bạn Đọc</a>
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=1">Nhân Viên</a>
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=2">Admin</a>
+            <a href="/main-library/admin/ADNhaCungCapController/list">Nhà Cung Cấp</a>
             <a href="/main-library/admin/ADThongKe.jsp" class="menu-active">Thống Kê</a>
         </div>
         <div class="container">
@@ -33,13 +34,13 @@
             <div class="content">
                 <table>
                     <c:if test="${not empty thongKeTLs}">
-                        <h1>Thống Kê Tài Liệu Theo Lượt Mượn</h1>
+                        <h2 class="title">Thống Kê Tài Liệu Theo Lượt Mượn</h2>
                         <tr>
                             <th>Mã</th>
                             <th>Tên Tài Liệu</th>
                             <th>Tác Giả</th>
                             <th>Số Lượng</th>
-                            <th onclick="changeThuTu(this)">Số Lượt Mượn <i class="arrow fa-solid fa-arrow-down"></i></th>
+                            <th style="width:200px;" onclick="changeThuTu(this)">Số Lượt Mượn <i class="arrow fa-solid fa-arrow-down"></i></th>
                         </tr>
                         <c:forEach var="tk" items="${thongKeTLs}">
                             <tr>
@@ -52,7 +53,7 @@
                         </c:forEach>
                     </c:if>
                     <c:if test="${not empty thongKeBDs}">
-                        <h1>Thống Kê Bạn Đọc Theo Số Tài Liệu Đã Mượn</h1>
+                        <h2 class="title">Thống Kê Bạn Đọc Theo Số Tài Liệu Đã Mượn</h2>
                         <tr>
                             <th>Mã</th>
                             <th>Họ Tên</th>

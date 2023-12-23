@@ -4,7 +4,6 @@ package controller.commons;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 import dao.ThanhVienDAO;
 import entity.ThanhVien;
 import java.io.IOException;
@@ -66,11 +65,9 @@ public class TaiKhoanController extends HttpServlet {
         List<ThanhVien> list = thanhVienDAO.checkLogin(thanhVien);
 
         if (list.isEmpty()) {
-            request.setAttribute("error", true);
-            response.sendRedirect("/main-library/commons/BDLogin.jsp");
+            response.sendRedirect("/main-library/commons/BDLogin.jsp?error=true");
         } else {
             request.getSession().setAttribute("thanhVien", list.get(0));
-            request.setAttribute("error", false);
             response.sendRedirect("/main-library/bandoc/BDTaiLieuController/view");
         }
     }
@@ -86,11 +83,9 @@ public class TaiKhoanController extends HttpServlet {
         List<ThanhVien> list = thanhVienDAO.checkLogin(thanhVien);
 
         if (list.isEmpty()) {
-            request.setAttribute("error", true);
-            response.sendRedirect("/main-library/commons/NVLogin.jsp");
+            response.sendRedirect("/main-library/commons/NVLogin.jsp?error=true");
         } else {
             request.getSession().setAttribute("thanhVien", list.get(0));
-            request.setAttribute("error", false);
             response.sendRedirect("/main-library/nhanvien/NVTaiLieuController/view");
         }
     }
@@ -106,11 +101,9 @@ public class TaiKhoanController extends HttpServlet {
         List<ThanhVien> list = thanhVienDAO.checkLogin(thanhVien);
 
         if (list.isEmpty()) {
-            request.setAttribute("error", true);
-            response.sendRedirect("/main-library/commons/ADLogin.jsp");
+            response.sendRedirect("/main-library/commons/ADLogin.jsp?error=true");
         } else {
             request.getSession().setAttribute("thanhVien", list.get(0));
-            request.setAttribute("error", false);
             response.sendRedirect("/main-library/admin/AdminHome.jsp");
         }
     }

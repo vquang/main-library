@@ -33,7 +33,7 @@
             <a href="/main-library/nhanvien/NVTraTaiLieu.jsp?first=true">Trả Tài Liệu</a>
         </div>
         <div class="container">
-            <div class="content">
+            <div>
                 <div class="search-header">
                     <form action="/main-library/nhanvien/NVBanDocController/muon-search" method="post" onsubmit="return beforeSearch()">
                         <div class="search-frame" style="padding:0">
@@ -41,15 +41,15 @@
                             <button class="search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
-                    <form action="/main-library/nhanvien/NVTaiLieuController/muon-search" method="post">
+                    <form action="/main-library/nhanvien/NVTaiLieuController/muon-search" method="post" style="margin-left: 50px;">
                         <div class="search-frame" style="padding:0">
                             <input type="text" name="search" placeholder="Tìm kiếm tài liệu..." />
                             <button class="search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
                 </div>
-                <div class="content" style="display: flex;">
-                    <div style="width: 60%">
+                <div style="display: flex;">
+                    <div style="width: 58%;margin-right:2%;">
                         <c:if test="${not empty listBanDocs}">
                             <h3 style="text-align: start">Danh Sách Bạn Đọc</h3>
                             <table style="margin: 0;">
@@ -95,11 +95,11 @@
                         </c:if>
                     </div>
                     <div style="width: 40%;">
-                        <form onsubmit="return validateForm(this)" style="background: white; align-items: center;" action="/main-library/nhanvien/NVMuonTaiLieuController" method="post">
+                        <h3 class="title">Thông Tin Đã Chọn</h3>
+                        <form class="pre-bill" onsubmit="return validateForm(this)" action="/main-library/nhanvien/NVMuonTaiLieuController" method="post">
                             <input type="hidden" name="nhanVienId" value="${thanhVien.id}" />
                             <input id="taiLieuIds" type="hidden" name="taiLieuIds" />
                             <input id="datTruocIds" type="hidden" name="datTruocIds" />
-                            <h3>Thông Tin Đã Chọn</h3>
                             <div class="group">
                                 <label for="banDocId">Mã Bạn Đọc: </label>
                                 <input id="banDocId" name="banDocId" type="text" readonly/>
@@ -118,7 +118,7 @@
                             </div>
                             <c:if test="${not empty listDatTruocs}">
                                 <h3>Danh Sách Tài Liệu Đã Đặt Trước:</h3>
-                                <table id="dt" style="margin: 0;">
+                                <table id="dt">
                                     <tr>
                                         <th class="small">Mã</th>
                                         <th>Tên Tài Liệu</th>
@@ -161,10 +161,10 @@
                 // set list tài liệu vào form
                 let taiLieus = JSON.parse(localStorage.getItem("taiLieus"));
                 if (taiLieus !== null) {
-                    let html = `<tr><th class="small">Mã </th><th>Tên Tài Liệu </th><th class="small">Xóa </th></tr>`;
+                    let html = `<tr><th>Mã </th><th>Tên Tài Liệu </th><th style="width:70px;">Xóa </th></tr>`;
                     for (let i = 0; i < taiLieus.length; ++i) {
-                        html += '<tr><td class="small">' + taiLieus[i].id + '</td><td>' + taiLieus[i].ten + '</td>'
-                                + '<td class="small"><button style="width:50px;background:transparent;" onclick="deleteTaiLieu(this)"><i class="fa-solid fa-trash delete"></i></button></td></tr>'
+                        html += '<tr><td>' + taiLieus[i].id + '</td><td>' + taiLieus[i].ten + '</td>'
+                                + '<td><button style="width:70px;background:transparent;justify-content: start;" onclick="deleteTaiLieu(this)"><i class="fa-solid fa-trash delete"></i></button></td></tr>';
                     }
                     document.getElementById('mt').innerHTML = html;
                 }

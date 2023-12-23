@@ -52,6 +52,10 @@
         <servlet-name>TaiKhoanController</servlet-name>
         <servlet-class>controller.commons.TaiKhoanController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ADNhaCungCapController</servlet-name>
+        <servlet-class>controller.admin.ADNhaCungCapController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NVTaiLieuController</servlet-name>
         <url-pattern>/nhanvien/NVTaiLieuController/*</url-pattern>
@@ -103,5 +107,9 @@
     <servlet-mapping>
         <servlet-name>TaiKhoanController</servlet-name>
         <url-pattern>/commons/TaiKhoanController/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ADNhaCungCapController</servlet-name>
+        <url-pattern>/admin/ADNhaCungCapController/*</url-pattern>
     </servlet-mapping>
 </web-app>

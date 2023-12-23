@@ -23,14 +23,16 @@
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=0">Bạn Đọc</a>
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=1">Nhân Viên</a>
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=2">Admin</a>
+            <a href="/main-library/admin/ADNhaCungCapController/list">Nhà Cung Cấp</a>
             <a href="/main-library/admin/ADThongKe.jsp">Thống Kê</a>
         </div>
         <div class="container">
-            <div class="content" style="margin:10px;">
-                <form style="margin: auto;width:400px;background: white;"
-                      action="/main-library/admin/ADThanhVienController/update?id=${tv.id}" method="post" onsubmit="return validateForm(this)">
-                    <c:if test="${not empty tv}">
+            <form class="form-mem" action="/main-library/admin/ADThanhVienController/update?id=${tv.id}" method="post" onsubmit="return validateForm(this)">
+                <c:if test="${not empty tv}">
+                    <div class="mem-header">
                         <h3>Form Thông Tin Thành Viên</h3>
+                    </div>
+                    <div style="padding:0 50px 50px 50px;">
                         <input type="hidden" name="id" value="${tv.id}" />
                         <input type="hidden" name="vaiTro" value="${tv.vaiTro}" />
                         <div class="group">
@@ -49,10 +51,10 @@
                             <label for="email">Email:</label>
                             <input id="email" type="text"  name="email" value="${tv.email}" required />
                         </div>
-                    </c:if>
-                    <button type="submit" class="submit">submit</button>
-                </form>
-            </div>
+                        <button type="submit" class="submit">submit</button>
+                    </div>
+                </c:if>
+            </form>
         </div>
 
         <script>

@@ -27,29 +27,24 @@
             <a href="/main-library/admin/ADThongKe.jsp">Thống Kê</a>
         </div>
         <div class="container">
-            <form class="form-mem" action="/main-library/admin/ADThanhVienController/update?id=${tv.id}" method="post" onsubmit="return validateForm(this)">
-                <c:if test="${not empty tv}">
+            <form class="form-mem" action="/main-library/admin/ADNhaCungCapController/update?id=${ncc.id}" method="post" onsubmit="return validateForm(this)">
+                <c:if test="${not empty ncc}">
                     <div class="mem-header">
-                        <h3>Form Thông Tin Thành Viên</h3>
+                        <h3>Form Thông Tin Nhà Cung Cấp</h3>
                     </div>
                     <div style="padding:0 50px 50px 50px;">
-                        <input type="hidden" name="id" value="${tv.id}" />
-                        <input type="hidden" name="vaiTro" value="${tv.vaiTro}" />
+                        <input type="hidden" name="id" value="${ncc.id}" />
                         <div class="group">
-                            <label for="hoTen">Họ Tên:</label>
-                            <input id="hoTen" type="text"  name="hoTen" value="${tv.hoTen}" required/>
+                            <label for="ten">Tên Nhà Cung Cấp:</label>
+                            <input id="ten" type="text"  name="ten" value="${ncc.ten}" required/>
                         </div>
                         <div class="group">
                             <label for="soDienThoai">Số Điện Thoại:</label>
-                            <input id="soDienThoai" type="text"  name="soDienThoai" value="${tv.soDienThoai}" required/>
+                            <input id="soDienThoai" type="text"  name="soDienThoai" value="${ncc.soDienThoai}" required/>
                         </div>
                         <div class="group">
                             <label for="diaChi">Địa Chỉ:</label>
-                            <input id="diaChi" type="text"  name="diaChi" value="${tv.diaChi}" required/>
-                        </div>
-                        <div class="group">
-                            <label for="email">Email:</label>
-                            <input id="email" type="text"  name="email" value="${tv.email}" required />
+                            <input id="diaChi" type="text"  name="diaChi" value="${ncc.diaChi}" required/>
                         </div>
                         <button type="submit" class="submit">submit</button>
                     </div>

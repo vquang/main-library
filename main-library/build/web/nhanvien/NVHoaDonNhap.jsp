@@ -26,77 +26,82 @@
             <a href="/main-library/nhanvien/NVTraTaiLieu.jsp?first=true">Trả Tài Liệu</a>
         </div>
         <div class="container">
-            <div class="content" style="margin-top: 20px;">
-                <form style="background: white; width:820px;align-items: center;">
-                    <h1>Hóa Đơn Nhập Tài Liệu</h1>
-                    <div>
-                        <h2>Thông Tin Nhà Cung Cấp</h2>
-                        <div class="group">
-                            <label>Mã Nhà Cung Cấp: </label>
-                            <input type="text" name="maBanDoc" readonly value="${hoaDonNhap.nhaCungCap.id}">
-                        </div>
-                        <div class="group">
-                            <label>Tên Nhà Cung Cấp: </label>
-                            <input type="text" name="hoTenBanDoc" readonly value="${hoaDonNhap.nhaCungCap.ten}">
-                        </div>
-                        <div class="group">
-                            <label>Số Điện Thoại: </label>
-                            <input type="text" name="soDienThoai" readonly value="${hoaDonNhap.nhaCungCap.soDienThoai}">
-                        </div>
-                        <div class="group">
-                            <label>Địa Chỉ: </label>
-                            <input type="text" name="diaChi" readonly value="${hoaDonNhap.nhaCungCap.diaChi}">
-                        </div>
+            <div>
+                <form class="bill">
+                    <div class="bill-header">
+                        <h1>Hóa Đơn Nhập</h1>
                     </div>
-                    <div>
-                        <h2>Nhân Viên Tạo Phiếu:</h2>
-                        <div class="group">
-                            <label>Mã Nhân Viên: </label>
-                            <input type="text" name="maNhanVien" readonly value="${hoaDonNhap.nhanVien.id}">
-                        </div>
-                        <div class="group">
-                            <label>Tên Nhân Viên: </label>
-                            <input type="text" name="hoTenNhanVien" readonly value="${hoaDonNhap.nhanVien.hoTen}">
-                        </div>
-                    </div>
-                    <div>
-                        <h2>Thông Tin Tài Liệu:</h2>
-                        <div class="group">
-                            <label>Ngày Nhập </label>
-                            <input type="text" name="ngayNhap" readonly value="${hoaDonNhap.ngayNhap}">
-                        </div>
-                        <div class="group">
-                            <label>Tổng Tiền (VND): </label>
-                            <input type="text" name="tongTien" readonly value="${hoaDonNhap.tongTien}">
-                        </div>
-                    </div>
-                    <div>
-                        <h2>Danh Sách Tài Liệu:</h2>
-                        <c:choose>
-                            <c:when test="${not empty hoaDonNhap.listTaiLieuNhaps}">
-                                <div class="card-table" style="width:100%;">
-                                    <table class="table-shadow card-large">
-                                        <tr>
-                                            <th>Mã</th>
-                                            <th>Tên Tài Liệu</th>
-                                            <th>Tác Giả</th>
-                                            <th>Số Lượng Nhập</th>
-                                            <th>Giá Nhập</th>
-                                        </tr>
-
-                                        <c:forEach var="taiLieuNhap" items="${hoaDonNhap.listTaiLieuNhaps}">
-                                            <tr>
-                                                <td>${taiLieuNhap.taiLieu.id}</td>
-                                                <td>${taiLieuNhap.taiLieu.ten}</td>
-                                                <td>${taiLieuNhap.taiLieu.tacGia}</td>
-                                                <td>${taiLieuNhap.soLuong}</td>
-                                                <td>${taiLieuNhap.giaNhap}</td>
-                                            </tr>
-                                        </c:forEach>
-                                    </table>
+                    <div style="padding: 50px;">
+                        <div style="display: flex;justify-content: space-between;">
+                            <div>
+                                <div class="group">
+                                    <label>Mã Nhà Cung Cấp: </label>
+                                    <input type="text" name="maBanDoc" readonly value="${hoaDonNhap.nhaCungCap.id}">
                                 </div>
-                            </c:when>
-                        </c:choose>
+                                <div class="group">
+                                    <label>Tên Nhà Cung Cấp: </label>
+                                    <input type="text" name="hoTenBanDoc" readonly value="${hoaDonNhap.nhaCungCap.ten}">
+                                </div>
+                                <div class="group">
+                                    <label>Số Điện Thoại: </label>
+                                    <input type="text" name="soDienThoai" readonly value="${hoaDonNhap.nhaCungCap.soDienThoai}">
+                                </div>
+                                <div class="group">
+                                    <label>Địa Chỉ: </label>
+                                    <input type="text" name="diaChi" readonly value="${hoaDonNhap.nhaCungCap.diaChi}">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="group">
+                                    <label>Mã Nhân Viên: </label>
+                                    <input type="text" name="maNhanVien" readonly value="${hoaDonNhap.nhanVien.id}">
+                                </div>
+                                <div class="group">
+                                    <label>Tên Nhân Viên: </label>
+                                    <input type="text" name="hoTenNhanVien" readonly value="${hoaDonNhap.nhanVien.hoTen}">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Danh Sách Tài Liệu:</h3>
+                            <c:choose>
+                                <c:when test="${not empty hoaDonNhap.listTaiLieuNhaps}">
+                                    <div class="card-table" style="width:100%;">
+                                        <table>
+                                            <tr class="tr-header">
+                                                <th>Mã</th>
+                                                <th>Tên Tài Liệu</th>
+                                                <th>Tác Giả</th>
+                                                <th>Số Lượng Nhập</th>
+                                                <th>Giá Nhập</th>
+                                            </tr>
+
+                                            <c:forEach var="taiLieuNhap" items="${hoaDonNhap.listTaiLieuNhaps}">
+                                                <tr>
+                                                    <td>${taiLieuNhap.taiLieu.id}</td>
+                                                    <td>${taiLieuNhap.taiLieu.ten}</td>
+                                                    <td>${taiLieuNhap.taiLieu.tacGia}</td>
+                                                    <td>${taiLieuNhap.soLuong}</td>
+                                                    <td>${taiLieuNhap.giaNhap}</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </table>
+                                    </div>
+                                </c:when>
+                            </c:choose>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <div class="group">
+                                <label>Ngày Nhập </label>
+                                <input type="text" name="ngayNhap" readonly value="${hoaDonNhap.ngayNhap}">
+                            </div>
+                            <div class="group">
+                                <label>Tổng Tiền (VND): </label>
+                                <input type="text" name="tongTien" readonly value="${hoaDonNhap.tongTien}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bill-footer">
                     </div>
                 </form>
             </div>

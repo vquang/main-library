@@ -20,7 +20,7 @@ public class NhaCungCapDAO {
     // LẤY TẤT CẢ NHÀ CUNG CẤP
     public List<NhaCungCap> getAll() {
         List<NhaCungCap> list = new ArrayList<>();
-        
+
         try {
             DBConnect dbConnect = new DBConnect();
             Connection connection = dbConnect.getConnection();
@@ -35,36 +35,68 @@ public class NhaCungCapDAO {
                 ncc.setTen(resultSet.getString("ten"));
                 ncc.setDiaChi(resultSet.getString("diaChi"));
                 ncc.setSoDienThoai(resultSet.getString("soDienThoai"));
-                
+
                 list.add(ncc);
 
-                // đóng kết nối
-                dbConnect.close(resultSet, statement, connection);
             }
+
+            // đóng kết nối
+            dbConnect.close(resultSet, statement, connection);
         } catch (Exception e) {
             System.out.println(e);
         }
-        
+
         return list;
     }
 
+    // LẤY THÔNG TIN 1 NHÀ CUNG CẤP
+    public NhaCungCap select(int id) {
+        NhaCungCap ncc = new NhaCungCap();
+
+        try {
+            DBConnect dbConnect = new DBConnect();
+            Connection connection = dbConnect.getConnection();
+            String sql = "select * from nhacungcap where id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            // thực thi truy vấn
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                ncc.setId(resultSet.getInt("id"));
+                ncc.setTen(resultSet.getString("ten"));
+                ncc.setDiaChi(resultSet.getString("diaChi"));
+                ncc.setSoDienThoai(resultSet.getString("soDienThoai"));
+
+            }
+            // đóng kết nối
+            dbConnect.close(resultSet, statement, connection);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return ncc;
+    }
+
     // THÊM 1 NHÀ CUNG CẤP MỚI
-    public boolean insert(NhaCungCap ncc) {
-        boolean ok = false;
+    public int insert(NhaCungCap ncc) {
+        int id = 0;
         try {
             DBConnect dbConnect = new DBConnect();
             Connection connection = dbConnect.getConnection();
             String sql = "insert into nhacungcap (ten, diaChi, soDienThoai) "
                     + "values (?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, ncc.getTen());
             statement.setString(2, ncc.getDiaChi());
             statement.setString(3, ncc.getSoDienThoai());
 
             // thực thi truy vấn
-            int rows = statement.executeUpdate();
-            if (rows > 0) {
-                ok = true;
+            statement.executeUpdate();
+            // lấy ra ID tài liệu vừa tạo vừa tạo
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                id = generatedKeys.getInt(1);
             }
 
             // đóng kết nối
@@ -72,7 +104,7 @@ public class NhaCungCapDAO {
         } catch (Exception e) {
             System.out.println(e);
         }
-        return ok;
+        return id;
     }
 
     // SỬA THÔNG TIN 1 NHÀ CUNG CẤP
@@ -144,7 +176,7 @@ public class NhaCungCapDAO {
                 ncc.setTen(resultSet.getString("ten"));
                 ncc.setDiaChi(resultSet.getString("diaChi"));
                 ncc.setSoDienThoai(resultSet.getString("soDienThoai"));
-                
+
                 list.add(ncc);
             }
 

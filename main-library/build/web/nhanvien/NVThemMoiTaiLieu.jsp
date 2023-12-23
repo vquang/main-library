@@ -26,39 +26,40 @@
             <a href="/main-library/nhanvien/NVTraTaiLieu.jsp?first=true">Trả Tài Liệu</a>
         </div>
         <div class="container">
-            <div class="content">
-                <h1>THÔNG TIN CHI TIẾT TÀI LIỆU</h1>
-                <div class="content" style="display: flex;justify-content: center;">
-                    <div class="left" style="width: 250px;background: white;">
+            <h2 class="title">THÔNG TIN CHI TIẾT TÀI LIỆU</h2>
+            <div>
+                <div style="display: flex">
+                    <div class="left">
                         <c:if test="${not empty img}">
                             <img class="content-item-image" src="/main-library/commons/${img}" />
                         </c:if>
+                    </div>
+                    <div class="right">
                         <form class="form-img" action="/main-library/commons/UploadImageController" method="post" enctype="multipart/form-data">
                             <input type="file" name="file" required />
                             <button type="submit" class="submit"><i class="fa-solid fa-upload"></i></button>
                         </form>
-                    </div>
-                    <div class="right" style="background: white;">
-                        <form action="/main-library/nhanvien/NVTaiLieuController/insert" method="post">
-                            <h3>Thông Tin Tài Liệu</h3>
-                            <div class="group">
-                                <label for="ten">Tên Tài Liệu:</label>
-                                <input id="ten" type="text" name="ten" required />
+                        <form class="form-up" action="/main-library/nhanvien/NVTaiLieuController/insert" method="post">
+                            <div>
+                                <h3>Thông Tin Tài Liệu</h3>
+                                <div class="group">
+                                    <label for="ten">Tên Tài Liệu:</label>
+                                    <input id="ten" type="text" name="ten" required />
+                                </div>
+                                <div class="group">
+                                    <label for="tacGia">Tác Giả:</label>
+                                    <input id="tacGia" type="text" name="tacGia" required />
+                                </div>
+                                <div class="group">
+                                    <label for="moTa">Mô Tả:</label>
+                                    <textarea id="moTa" name="moTa"></textarea>
+                                </div>
+                                <input type="hidden" name="soLuong" value="0" />
+                                <c:if test="${not empty img}">
+                                    <input type="hidden" name="anhBia" value="${img}" />
+                                </c:if>
                             </div>
-                            <div class="group">
-                                <label for="tacGia">Tác Giả:</label>
-                                <input id="tacGia" type="text" name="tacGia" required />
-                            </div>
-                            <div class="group">
-                                <label for="moTa">Mô Tả:</label>
-                                <textarea id="moTa" name="moTa"></textarea>
-                            </div>
-                            <input type="hidden" name="soLuong" value="0" />
-                            <c:if test="${not empty img}">
-                                <input type="hidden" name="anhBia" value="${img}" />
-                            </c:if>
-                            <button onclick="submit" class="submit">Submit</button>
-
+                            <button type="submit" class="submit">Submit</button>
                         </form>
                     </div>
                 </div>

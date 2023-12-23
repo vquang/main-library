@@ -27,24 +27,24 @@
         </div>
         <div class="container">
             <div class="content">
-                <div class="search-header">
+                <div class="search-header" style="justify-content: space-between;">
                     <form action="/main-library/nhanvien/NVTaiLieuController/kho-search" method="post">
-                        <div class="search-frame" style="padding:0">
+                        <div class="search-frame">
                             <input type="text" name="search" placeholder="Tìm kiếm tài liệu..." />
                             <button class="search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
                     <a href="/main-library/nhanvien/NVThemMoiTaiLieu.jsp" class="submit">Tạo Mới</a>
                 </div>
-                <h1>Kho Tài Liệu</h1>
+                <h2 class="title">Kho Tài Liệu</h2>
                 <c:if test="${not empty listTaiLieus}">
                     <table>
-                        <tr>
+                        <tr class="tr-header">
                             <th>Mã</th>
                             <th>Tên Tài Liệu</th>
                             <th>Tác Giả</th>
                             <th>Số Lượng</th>
-                            <th colspan="2">Thao Tác</th>
+                            <th class="th-tt">Thao Tác</th>
                         </tr>
                         <c:forEach var="taiLieu" items="${listTaiLieus}">
                             <tr id="${taiLieu.id}">
@@ -52,12 +52,11 @@
                                 <td>${taiLieu.ten}</td>
                                 <td>${taiLieu.tacGia}</td>
                                 <td>${taiLieu.soLuong}</td>
-                                <td class="small">
-                                    <a href="/main-library/nhanvien/NVTaiLieuController/select?id=${taiLieu.id}">
-                                        <i class="fa-solid fa-gear update"></i>
+                                <td class="operation">
+                                    <a style="padding-left:30px;" class="update" href="/main-library/nhanvien/NVTaiLieuController/select?id=${taiLieu.id}">
+                                        <i class="fa-solid fa-gear"></i>
                                     </a>
                                 </td>
-                                <td class="small"><a onclick="onDelete(this)"><i class="fa-solid fa-trash delete"></i></a></td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -74,14 +73,6 @@
             function init() {
                 if (${param.isDelete == 'false'}) {
                     alert("Không thể xóa do có ràng buộc với hóa đơn!");
-                }
-            }
-            function onDelete(element) {
-                let result = confirm("Xác Nhận Xóa?");
-                if (result) {
-                    let id = element.closest('tr').id;
-                    let url = '/main-library/nhanvien/NVTaiLieuController/delete?id=' + id;
-                    window.location.href = url;
                 }
             }
         </script>

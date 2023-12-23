@@ -23,55 +23,54 @@
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=0">Bạn Đọc</a>
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=1">Nhân Viên</a>
             <a href="/main-library/admin/ADThanhVienController/list?vaiTro=2" class="menu-active">Admin</a>
+            <a href="/main-library/admin/ADNhaCungCapController/list">Nhà Cung Cấp</a>
             <a href="/main-library/admin/ADThongKe.jsp">Thống Kê</a>
         </div>
         <div class="container">
-            <div class="content">
-                <div class="search-header">
-                    <a href="/main-library/admin/ADTaoMoiThanhVien.jsp?vaiTro=2" class="submit">Tạo Mới</a>
-                </div>
-                <h1>Danh Sách Admin</h1>
-                <div class="content">
-                    <table>
-                        <tr>
-                            <th>Mã</th>
-                            <th>Username</th>
-                            <th>Họ Tên</th>
-                            <th>Số Điện Thoại</th>
-                            <th>Địa Chỉ</th>
-                            <th>Email</th>
-                            <th>Vai Trò</th>
-                            <th colspan="2">Thao Tác</th>
-                        </tr>
-                        <c:if test="${not empty listThanhViens}">
-                            <c:forEach var="tv" items="${listThanhViens}">
-                                <c:choose>
-                                    <c:when test="${tv.vaiTro == 0}">
-                                        <c:set var="vaiTro" value="Bạn Đọc"/>
-                                    </c:when>
-                                    <c:when test="${tv.vaiTro == 1}">
-                                        <c:set var="vaiTro" value="Nhân Viên"/>
-                                    </c:when>
-                                    <c:when test="${tv.vaiTro == 2}">
-                                        <c:set var="vaiTro" value="Admin"/>
-                                    </c:when>
-                                </c:choose>
-                                <tr id="${tv.id}">
-                                    <td>${tv.id}</td>
-                                    <td>${tv.username}</td>
-                                    <td>${tv.hoTen}</td>
-                                    <td>${tv.soDienThoai}</td>
-                                    <td>${tv.diaChi}</td>
-                                    <td>${tv.email}</td>
-                                    <td style="font-weight: bold; color: red;">${vaiTro}</td>
-                                    <td class="small"><a href="/main-library/admin/ADThanhVienController/select?id=${tv.id}"><i class="fa-solid fa-gear update"></i></a></td>
-                                    <td class="small"><a onclick="onDelete(this)"><i class="fa-solid fa-trash delete"></i></a></td>
-                                </tr>
-                            </c:forEach>
-                        </c:if>
-                    </table>
-                </div>
+            <div class="search-header">
+                <a href="/main-library/admin/ADTaoMoiThanhVien.jsp?vaiTro=2" class="submit">Tạo Mới</a>
             </div>
+            <h2 class="title">Danh Sách Admin</h2>
+            <table>
+                <tr>
+                    <th>Mã</th>
+                    <th>Username</th>
+                    <th>Họ Tên</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Địa Chỉ</th>
+                    <th>Email</th>
+                    <th>Vai Trò</th>
+                    <th class="th-tt">Thao Tác</th>
+                </tr>
+                <c:if test="${not empty listThanhViens}">
+                    <c:forEach var="tv" items="${listThanhViens}">
+                        <c:choose>
+                            <c:when test="${tv.vaiTro == 0}">
+                                <c:set var="vaiTro" value="Bạn Đọc"/>
+                            </c:when>
+                            <c:when test="${tv.vaiTro == 1}">
+                                <c:set var="vaiTro" value="Nhân Viên"/>
+                            </c:when>
+                            <c:when test="${tv.vaiTro == 2}">
+                                <c:set var="vaiTro" value="Admin"/>
+                            </c:when>
+                        </c:choose>
+                        <tr id="${tv.id}">
+                            <td>${tv.id}</td>
+                            <td>${tv.username}</td>
+                            <td>${tv.hoTen}</td>
+                            <td>${tv.soDienThoai}</td>
+                            <td>${tv.diaChi}</td>
+                            <td>${tv.email}</td>
+                            <td style="font-weight: bold; color: red;">${vaiTro}</td>
+                            <td><a style="padding-left:30px;" class="update" href="/main-library/admin/ADThanhVienController/select?id=${tv.id}">
+                                    <i class="fa-solid fa-gear"></i></a>
+                            </td>
+
+                        </tr>
+                    </c:forEach>
+                </c:if>
+            </table>
         </div>
 
         <script>
@@ -79,14 +78,6 @@
             function init() {
                 if (${param.isDelete == 'false'}) {
                     alert("Không thể xóa do có ràng buộc với hóa đơn!");
-                }
-            }
-            function onDelete(element) {
-                let result = confirm("Xác Nhận Xóa?");
-                if (result) {
-                    let id = element.closest('tr').id;
-                    let url = '/main-library/admin/ADThanhVienController/delete?vaiTro=2&id=' + id;
-                    window.location.href = url;
                 }
             }
         </script>

@@ -27,34 +27,14 @@
             <a href="/main-library/admin/ADThongKe.jsp">Thống Kê</a>
         </div>
         <div class="container">
-            <form class="form-mem"action="/main-library/admin/ADThanhVienController/insert" method="post" onsubmit="return validateForm(this)">
-                <c:choose>
-                    <c:when test="${param.vaiTro == 0}">
-                        <c:set var="vaiTro" value="Bạn Đọc"/>
-                    </c:when>
-                    <c:when test="${param.vaiTro == 1}">
-                        <c:set var="vaiTro" value="Nhân Viên"/>
-                    </c:when>
-                    <c:when test="${param.vaiTro == 2}">
-                        <c:set var="vaiTro" value="Admin"/>
-                    </c:when>
-                </c:choose>
+            <form class="form-mem"action="/main-library/admin/ADNhaCungCapController/insert" method="post" onsubmit="return validateForm(this)">
                 <div class="mem-header">
-                    <h3>Form Thông Tin Thành Viên</h3>
+                    <h3>Form Thông Tin Nhà Cung Cấp</h3>
                 </div>
                 <div style="padding:0 50px 50px 50px;">
-                    <input type="hidden" name="vaiTro" value="${param.vaiTro}" />
                     <div class="group">
-                        <label for="username">Username:</label>
-                        <input id="username" type="text"  name="username" required/>
-                    </div>
-                    <div class="group">
-                        <label for="password">Password:</label>
-                        <input id="password" type="password"  name="password" required/>
-                    </div>
-                    <div class="group">
-                        <label for="hoTen">Họ Tên:</label>
-                        <input id="hoTen" type="text"  name="hoTen" required/>
+                        <label for="ten">Tên Nhà Cung Cấp:</label>
+                        <input id="ten" type="text"  name="ten" required/>
                     </div>
                     <div class="group">
                         <label for="soDienThoai">Số Điện Thoại:</label>
@@ -63,10 +43,6 @@
                     <div class="group">
                         <label for="diaChi">Địa Chỉ:</label>
                         <input id="diaChi" type="text"  name="diaChi" required/>
-                    </div>
-                    <div class="group">
-                        <label for="email">Email:</label>
-                        <input id="email" type="text"  name="email" required />
                     </div>
                     <button type="submit" class="submit">submit</button>
                 </div>

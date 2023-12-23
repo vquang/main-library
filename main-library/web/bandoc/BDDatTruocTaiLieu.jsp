@@ -24,33 +24,31 @@
             <a href="/main-library/bandoc/BDDatTruocController/view?id=${thanhVien.id}" class="menu-active">Kho Đặt Trước</a>
         </div>
         <div class="container">
-            <div class="container">
-                <h1>Danh Sách Tài Liệu Đặt Trước</h1>
-                <table>
-                    <tr>
-                        <th>Mã</th>
-                        <th>Tên Tài Liệu</th>
-                        <th>Tác Giả</th>
-                        <th>Ngày Đặt</th>
-                        <th>Ngày Hết Hạn</th>
-                        <th>Xóa</th>
-                    </tr>
-                    <c:choose>
-                        <c:when test="${not empty listDatTruocs}">
-                            <c:forEach var="datTruoc" items="${listDatTruocs}">
-                                <tr class="tr" id="${datTruoc.id}">
-                                    <td>${datTruoc.taiLieu.id}</td>
-                                    <td>${datTruoc.taiLieu.ten}</td>
-                                    <td>${datTruoc.taiLieu.tacGia}</td>
-                                    <td>${datTruoc.ngayDat}</td>
-                                    <td>${datTruoc.ngayHetHan}</td>
-                                    <td class="small"><a onclick="onDelete(this)"><i class="fa-solid fa-trash delete"></i></a></td>
-                                </tr>
-                            </c:forEach>
-                        </c:when>
-                    </c:choose>
-                </table>
-            </div>
+            <h2 class="title">Danh Sách Tài Liệu Đặt Trước</h2>
+            <table>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên Tài Liệu</th>
+                    <th>Tác Giả</th>
+                    <th>Ngày Đặt</th>
+                    <th>Ngày Hết Hạn</th>
+                    <th>Xóa</th>
+                </tr>
+                <c:choose>
+                    <c:when test="${not empty listDatTruocs}">
+                        <c:forEach var="datTruoc" items="${listDatTruocs}">
+                            <tr class="tr" id="${datTruoc.id}">
+                                <td>${datTruoc.taiLieu.id}</td>
+                                <td>${datTruoc.taiLieu.ten}</td>
+                                <td>${datTruoc.taiLieu.tacGia}</td>
+                                <td>${datTruoc.ngayDat}</td>
+                                <td>${datTruoc.ngayHetHan}</td>
+                                <td style="width: 70px;"><a class="delete" onclick="onDelete(this)"><i class="fa-solid fa-trash"></i></a></td>
+                            </tr>
+                        </c:forEach>
+                    </c:when>
+                </c:choose>
+            </table>
         </div>
     </div>
 

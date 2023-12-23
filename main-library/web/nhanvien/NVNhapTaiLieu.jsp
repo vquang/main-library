@@ -26,7 +26,7 @@
             <a href="/main-library/nhanvien/NVTraTaiLieu.jsp?first=true">Trả Tài Liệu</a>
         </div>
         <div class="container">
-            <div class="content">
+            <div>
                 <div class="search-header">
                     <form action="/main-library/nhanvien/NVNhaCungCapController/search" method="post" onsubmit="return beforeSearch()">
                         <div class="search-frame" style="padding:0">
@@ -34,17 +34,17 @@
                             <button class="search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
-                    <form action="/main-library/nhanvien/NVTaiLieuController/nhap-search" method="post">
+                    <form action="/main-library/nhanvien/NVTaiLieuController/nhap-search" method="post" style="margin-left: 50px;">
                         <div class="search-frame" style="padding:0">
                             <input type="text" name="search" placeholder="Tìm kiếm tài liệu..." />
                             <button class="search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
                 </div>
-                <div class="content" style="display: flex;">
-                    <div style="width: 60%">
+                <div style="display: flex;">
+                    <div style="width: 58%;margin-right:2%;">
                         <c:if test="${not empty listNCCs}">
-                            <h3 style="text-align: start">Danh Sách Nhà Cung Cấp</h3>
+                            <h3 class="title" style="text-align: start">Danh Sách Nhà Cung Cấp</h3>
                             <table style="margin: 0;">
                                 <tr>
                                     <th class="small">Mã</th>
@@ -64,7 +64,7 @@
                         </c:if>
 
                         <c:if test="${not empty listTaiLieus}">
-                            <h3 style="text-align: start">Danh Sách Tài Liệu</h3>
+                            <h3 class="title" style="text-align: start">Danh Sách Tài Liệu</h3>
                             <table style="margin: 0;">
                                 <tr>
                                     <th class="small">Mã</th>
@@ -84,10 +84,10 @@
                         </c:if>
                     </div>
                     <div style="width: 40%;">
-                        <form onsubmit="return validateForm(this)" style="background: white; align-items: center;" action="/main-library/nhanvien/NVNhapTaiLieuController" method="post">
+                        <h3 class="title">Thông Tin Đã Chọn</h3>
+                        <form class="pre-bill" onsubmit="return validateForm(this)" action="/main-library/nhanvien/NVNhapTaiLieuController" method="post">
                             <input type="hidden" name="nhanVienId" value="${thanhVien.id}" />
                             <input id="listNhaps" type="hidden" name="listNhaps" />
-                            <h3>Thông Tin Đã Chọn</h3>
                             <div class="group">
                                 <label for="nccId">Mã NCC: </label>
                                 <input id="nccId" type="text" name="nccId" readonly/>
@@ -105,7 +105,7 @@
                                 <input id="tongTien" type="text" name="tongTien" readonly/>
                             </div>
                             <h3>Danh Sách Tài Liệu Nhập:</h3>
-                            <table id="nhap"></table>
+                            <table id="nhap" style="margin-bottom: 10px;"></table>
                             <button type="submit" class="submit">Tạo Hóa Đơn Nhập</button>
                         </form>
                     </div>
@@ -128,16 +128,16 @@
 
                 // set list tài liệu vào form
                 let taiLieus = JSON.parse(localStorage.getItem("listNhaps"));
-                let html = `<tr><th class="small">Mã </th><th>Tên Tài Liệu </th><th>Số Lượng</th><th>Giá Nhập</th><th class="small">Xóa </th></tr>`;
+                let html = `<tr><th>Mã </th><th>Tên Tài Liệu </th><th>Số Lượng</th><th>Giá Nhập</th><th>Xóa </th></tr>`;
                 if (taiLieus !== null) {
 
                     for (let i = 0; i < taiLieus.length; ++i) {
-                        html += '<tr><td class="small">' + taiLieus[i].id + '</td><td>' + taiLieus[i].ten + '</td>'
+                        html += '<tr><td>' + taiLieus[i].id + '</td><td>' + taiLieus[i].ten + '</td>'
                                 + '<td><input type="number" name="soLuong" min="0" required pattern="[0-9]+" oninput="onChangeNumber()" value="' +
                                 +taiLieus[i].soLuong + '"/></td>'
                                 + '<td><input type="number" name="giaNhap" min="0" required pattern="[0-9]+" oninput="onChangeNumber()" value="' +
                                 +taiLieus[i].giaNhap + '"/></td>'
-                                + '<td class="small"><button style="width:50px;background:transparent;" onclick="deleteTaiLieu(this)"><i class="fa-solid fa-trash delete"></i></button></td></tr>'
+                                + '<td><button style="width:50px;background:transparent;margin:auto;justify-content: start;" onclick="deleteTaiLieu(this)"><i class="fa-solid fa-trash delete"></i></button></td></tr>';
                     }
                 }
                 document.getElementById('nhap').innerHTML = html;
