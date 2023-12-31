@@ -5,11 +5,11 @@
 package controller.nhanvien;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import dao.MuonTaiLieuDAO;
 import entity.PhieuMuon;
 import entity.TaiLieu;
+import entity.TaiLieuDatTruoc;
 import entity.TaiLieuMuon;
 import entity.ThanhVien;
 import java.io.IOException;
@@ -20,7 +20,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.lang.reflect.Type;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import utils.Time;
 
@@ -59,11 +58,15 @@ public class NVMuonTaiLieuController extends HttpServlet {
         int banDocId = Integer.parseInt(request.getParameter("banDocId"));
         Date ngayMuon = Time.stringToDate(request.getParameter("ngayMuon"));
         Date ngayPhaiTra = Time.stringToDate(request.getParameter("ngayPhaiTra"));
-        
+
         // lấy ra list id tài liệu đặt trước
-        Type listType = new TypeToken<List<Integer>>() {}.getType();
+        Type listType = new TypeToken<List<Integer>>() {
+        }.getType();
         List<Integer> taiLieuIds = new Gson().fromJson(request.getParameter("taiLieuIds"), listType);
         List<Integer> datTruocIds = new Gson().fromJson(request.getParameter("datTruocIds"), listType);
+        // lấy ra list id tài liệu nằm trong tài liệu đặt trước
+        List<TaiLieuDatTruoc> listDatTruocs = (List<TaiLieuDatTruoc>) request.getSession().getAttribute("listDatTruocs");
+        List<Integer> taiLieuDTIds = listDatTruocs.stream().map(dt -> dt.getTaiLieu().getId()).toList();
 
         // tạo nhân viên
         ThanhVien nhanVien = new ThanhVien();
@@ -93,7 +96,7 @@ public class NVMuonTaiLieuController extends HttpServlet {
         phieuMuon.setBanDoc(banDoc);
         phieuMuon.setListTaiLieuMuons(listTaiLieuMuons);
 
-        return muonTaiLieuDAO.insert(phieuMuon, datTruocIds);
+        return muonTaiLieuDAO.insert(phieuMuon, datTruocIds, taiLieuDTIds);
     }
 
     // LẤY PHIẾU MƯỢN VỪA TẠO

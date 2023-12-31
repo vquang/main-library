@@ -53,6 +53,10 @@
                                         <input id="id" type="text" name="id" value="${taiLieu.id}" readonly />
                                     </div>
                                     <div class="group">
+                                        <label for="soLuong1">Số Lượng:</label>
+                                        <input id="soLuong1" type="text" name="soLuong" value="${taiLieu.soLuong}" readonly />
+                                    </div>
+                                    <div class="group">
                                         <label for="ten">Tên Tài Liệu:</label>
                                         <input id="ten" type="text" name="ten" value="${taiLieu.ten}" required />
                                     </div>

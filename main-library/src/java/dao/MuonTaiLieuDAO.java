@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class MuonTaiLieuDAO {
 
     // TẠO 1 PHIẾU MƯỢN MỚI => TRẢ VỀ ID PHIẾU MƯỢN MỚI TẠO
-    public int insert(PhieuMuon phieuMuon, List<Integer> datTruocIds) {
+    public int insert(PhieuMuon phieuMuon, List<Integer> datTruocIds, List<Integer> taiLieuDTIds) {
         int id = 0;
 
         try {
@@ -62,10 +62,16 @@ public class MuonTaiLieuDAO {
             String placeholders = listTaiLieuIds.stream().map(i -> "?").collect(Collectors.joining(", "));
             sql = "update tailieu set soLuong = soLuong - 1 where id in (" + placeholders + ")";
             statement = connection.prepareStatement(sql);
+            boolean ok = false;
             for (int i = 1; i <= listTaiLieuIds.size(); ++i) {
-                statement.setInt(i, listTaiLieuIds.get(i - 1));
+                if (!taiLieuDTIds.contains(listTaiLieuIds.get(i - 1))) {
+                    ok = true;
+                    statement.setInt(i, listTaiLieuIds.get(i - 1));
+                }
             }
-            statement.executeUpdate();
+            if (ok) {
+                statement.executeUpdate();
+            }
 
             // SET TRẠNG THÁI CỦA TÀI LIỆU ĐẶT TRƯỚC LÀ 1
             // (TRẠNG THÁI 0 TỨC LÀ TÀI LIỆU ĐƯỢC ĐẶT TRƯỚC NHƯNG CHƯA ĐƯỢC MƯỢN)
@@ -73,10 +79,14 @@ public class MuonTaiLieuDAO {
             placeholders = datTruocIds.stream().map(i -> "?").collect(Collectors.joining(", "));
             sql = "update tailieudattruoc set trangthai = 1 where id in (" + placeholders + ")";
             statement = connection.prepareStatement(sql);
+            ok = false;
             for (int i = 1; i <= datTruocIds.size(); ++i) {
+                ok = true;
                 statement.setInt(i, datTruocIds.get(i - 1));
             }
-            statement.executeUpdate();
+            if (ok) {
+                statement.executeUpdate();
+            }
 
             // đóng kết nối
             dbConnect.close(null, statement, connection);

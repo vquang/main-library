@@ -364,7 +364,7 @@ th, td {
     border: 2px solid black;
 }
 
-input[id='id'], input[id='id']:focus  {
+input[id='id'], input[id='id']:focus, input[id='soLuong1'], input[id='soLuong1']:focus  {
     font-weight: bold;
     color: rgb(255, 0, 102);
     border: none;
