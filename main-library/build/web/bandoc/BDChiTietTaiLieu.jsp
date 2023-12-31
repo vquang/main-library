@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="group">
                                         <label for="moTa">Mô Tả:</label>
-                                        <textarea id="moTa" name="moTa" readonly>${taiLieu.moTa}</textarea>
+                                        <span id="moTa" name="moTa" readonly>${taiLieu.moTa}</span>
                                     </div>
                                     <input type="hidden" name="anhBia" value="${taiLieu.anhBia}" />
                                 </div>

@@ -55,7 +55,9 @@ public class MuonTaiLieuDAO {
                 statement.setInt(3, id);
                 statement.executeUpdate();
 
-                listTaiLieuIds.add(taiLieuId);
+                if (!taiLieuDTIds.contains(taiLieuId)) {
+                    listTaiLieuIds.add(taiLieuId);
+                }
             }
 
             // GIẢM SỐ LƯỢNG CỦA TÀI LIỆU ĐI 1 (DO MỖI TÀI LIỆU BỊ MƯỢN MẤT 1 CUỐN)
@@ -64,10 +66,8 @@ public class MuonTaiLieuDAO {
             statement = connection.prepareStatement(sql);
             boolean ok = false;
             for (int i = 1; i <= listTaiLieuIds.size(); ++i) {
-                if (!taiLieuDTIds.contains(listTaiLieuIds.get(i - 1))) {
-                    ok = true;
-                    statement.setInt(i, listTaiLieuIds.get(i - 1));
-                }
+                ok = true;
+                statement.setInt(i, listTaiLieuIds.get(i - 1));
             }
             if (ok) {
                 statement.executeUpdate();

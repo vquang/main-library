@@ -186,6 +186,7 @@ th, td {
     box-shadow: 5px 5px 5px rgb(166, 166, 166);
     cursor: pointer;
     background-color: rgb(255, 255, 255);
+    justify-content: start;
 }
 
 .content-item:hover {
@@ -202,7 +203,7 @@ th, td {
 .content-item-text {
     text-align: center;
     font-weight: bold;
-    padding:5px 0 2px 0;
+    padding:5px 5px 2px 5px;
     color:rgb(179, 179, 179);
 }
 
@@ -352,17 +353,18 @@ th, td {
     padding: 50px;
 }
 
-.right input, .right textarea {
+.right input, .right textarea, .right span {
     font-size: 18px;
     background: rgb(242, 242, 242);
     padding: 10px;
-    width: 250px;
+    width: 400px;
     border: 2px solid transparent;
 }
 
 .right input:focus, .right textarea:focus {
     border: 2px solid black;
 }
+
 
 input[id='id'], input[id='id']:focus, input[id='soLuong1'], input[id='soLuong1']:focus  {
     font-weight: bold;
